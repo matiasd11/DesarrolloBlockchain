@@ -1,0 +1,13 @@
+from cryptos import *
+words = entropy_to_words(os.urandom(16))
+print("palabras: ", words)
+priv = sha256(words)
+print("checkeo: ",keystore.bip39_is_checksum_valid(words))
+coin = Bitcoin(testnet=True)
+wallet = coin.wallet(words)
+addr1 = wallet.new_receiving_address()
+print("address 1: ",addr1)
+print("privada addr1: ",wallet.privkey(addr1))
+addr2 = wallet.new_change_address()
+print("address 2: ",addr2)
+print("privada addr2: ",wallet.privkey(addr2))
